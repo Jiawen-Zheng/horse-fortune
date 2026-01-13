@@ -1,0 +1,30 @@
+{
+  "name": "horse-fortune",
+  "version": "1.0.0",
+  "description": "马年好运签 - 2026马年抽签H5应用",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10",
+    "gsap": "^3.12.5",
+    "html2canvas": "^1.4.1",
+    "lodash-es": "^4.17.21",
+    "pinia": "^2.1.7",
+    "vant": "^4.8.1",
+    "vue": "^3.4.15",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.3",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.33",
+    "postcss-px-to-viewport": "^1.1.1",
+    "sass": "^1.70.0",
+    "terser": "^5.44.1",
+    "vite": "^5.0.11"
+  }
+}

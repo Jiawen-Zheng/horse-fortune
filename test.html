@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试页面</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, #FFF5F5 0%, #FFEBEE 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        h1 {
+            color: #D32F2F;
+            text-align: center;
+            font-size: 32px;
+            margin: 0 0 20px 0;
+        }
+        .emoji {
+            text-align: center;
+            font-size: 80px;
+            margin: 20px 0;
+        }
+        .info {
+            background: #FFF5F5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .info p {
+            margin: 10px 0;
+            color: #666;
+        }
+        .success {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐴 马年好运签</h1>
+        <div class="emoji">🎉</div>
+        <div class="info">
+            <p class="success">✅ 连接成功！</p>
+            <p>如果你能看到这个页面，说明：</p>
+            <p>1. 网络连接正常</p>
+            <p>2. 服务器运行正常</p>
+            <p>3. 手机可以访问电脑</p>
+        </div>
+        <div class="info">
+            <p><strong>访问地址：</strong></p>
+            <p id="url"></p>
+            <p><strong>访问时间：</strong></p>
+            <p id="time"></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('url').textContent = window.location.href;
+        document.getElementById('time').textContent = new Date().toLocaleString('zh-CN');
+    </script>
+</body>
+</html>
