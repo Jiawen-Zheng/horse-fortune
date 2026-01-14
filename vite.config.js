@@ -7,8 +7,12 @@ import postcsspxtoviewport from 'postcss-px-to-viewport'
 export default defineConfig(({ mode }) => {
   // 根据环境设置 base 路径
   // 开发环境：使用根路径 /
-  // 生产环境：使用 /fortune/ 路径（用于 OSS 路径部署）
-  const base = mode === 'production' ? '/fortune/' : '/'
+  // 生产环境：
+  //   - Vercel部署：使用根路径 /
+  //   - OSS部署：使用 /fortune/ 路径
+  // 通过环境变量 VITE_DEPLOY_TARGET 来区分
+  const deployTarget = process.env.VITE_DEPLOY_TARGET || 'vercel'
+  const base = mode === 'production' && deployTarget === 'oss' ? '/fortune/' : '/'
   
   return {
     base,
