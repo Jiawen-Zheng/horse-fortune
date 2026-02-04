@@ -75,9 +75,6 @@
       </div>
     </div>
 
-    <!-- 使用次数限制弹窗 -->
-    <UsageLimitModal :show="showLimitModal" @close="closeLimitModal" />
-    
     <!-- 退出提示弹窗 -->
     <ExitPromptModal
       :show="showExitPrompt"
@@ -92,13 +89,10 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useFortuneStore } from '@/stores/fortune'
 import { getSignByCategoryAndId } from '@/data/index'
-import { checkDailyUsage, getUsageStats } from '@/utils/usageLimit'
-import UsageLimitModal from '@/components/UsageLimitModal.vue'
 import ExitPromptModal from '@/components/ExitPromptModal.vue'
 
 const router = useRouter()
 const fortuneStore = useFortuneStore()
-const showLimitModal = ref(false)
 const showExitPrompt = ref(false)
 
 // 格式化文本：每个词条换行，【】之前换行
@@ -158,16 +152,8 @@ const signData = computed(() => {
 })
 
 const goHome = () => {
-  // 检查是否还有剩余次数
-  const { remaining } = getUsageStats()
-  
-  if (remaining > 0) {
-    // 还有剩余次数，显示退出提示
-    showExitPrompt.value = true
-  } else {
-    // 没有剩余次数，直接返回
-    router.push('/')
-  }
+  // 直接返回首页
+  router.push('/')
 }
 
 const confirmExit = () => {
@@ -180,21 +166,9 @@ const cancelExit = () => {
 }
 
 const drawAgain = () => {
-  // 检查使用次数
-  const { allowed } = checkDailyUsage()
-  
-  if (!allowed) {
-    showLimitModal.value = true
-    return
-  }
-  
   // 清除当前签号，重新开始
   fortuneStore.setSignId(null)
   router.push('/sign-select')
-}
-
-const closeLimitModal = () => {
-  showLimitModal.value = false
 }
 
 onMounted(() => {

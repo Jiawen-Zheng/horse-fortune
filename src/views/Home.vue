@@ -9,12 +9,6 @@
 
     <!-- 主要内容 -->
     <div class="content">
-      <!-- 使用次数提示 -->
-      <div class="usage-tip">
-        <span class="tip-icon">ℹ️</span>
-        <span class="tip-text">{{ usageMessage }}</span>
-      </div>
-
       <!-- 顶部装饰 -->
       <div class="top-decoration">
         <div class="lantern lantern-left"></div>
@@ -107,40 +101,17 @@
 
     <!-- 福字装饰 -->
     <div class="fu-decoration">福</div>
-
-    <!-- 使用次数限制弹窗 -->
-    <UsageLimitModal :show="showLimitModal" @close="closeLimitModal" />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { checkDailyUsage } from '@/utils/usageLimit'
-import UsageLimitModal from '@/components/UsageLimitModal.vue'
 
 const router = useRouter()
-const usageMessage = ref('')
-const showLimitModal = ref(false)
-
-onMounted(() => {
-  const { message } = checkDailyUsage()
-  usageMessage.value = message
-})
 
 const handleStart = () => {
-  const { allowed } = checkDailyUsage()
-  
-  if (!allowed) {
-    showLimitModal.value = true
-    return
-  }
-  
   router.push('/sign-select')
-}
-
-const closeLimitModal = () => {
-  showLimitModal.value = false
 }
 </script>
 

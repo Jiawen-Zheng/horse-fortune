@@ -69,7 +69,6 @@ import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { useFortuneStore } from '@/stores/fortune'
 import { calculateSignId } from '@/utils/algorithm'
-import { recordUsage, getUsageStats } from '@/utils/usageLimit'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -149,19 +148,6 @@ const completeShake = () => {
 }
 
 const viewResult = () => {
-  // 记录使用次数
-  recordUsage()
-  
-  // 检查是否是最后一次使用
-  const { remaining } = getUsageStats()
-  
-  // 如果剩余次数为0，说明刚用完最后一次，弹窗提示
-  if (remaining === 0) {
-    setTimeout(() => {
-      alert('今日使用次数已用完（10/10次）\n\n明天再来免费使用，或购买新链接立即使用！')
-    }, 500) // 延迟500ms，让页面先跳转
-  }
-  
   // 跳转到结果页面
   router.push('/result')
 }
