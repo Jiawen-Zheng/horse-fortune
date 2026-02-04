@@ -32,13 +32,13 @@
               </div>
             </div>
             
-            <button class="copy-button" @click="copyShopName">
-              <span class="button-icon">📋</span>
-              <span>复制店铺名</span>
+            <button class="copy-button" @click="goToXiaohongshu">
+              <span class="button-icon">🔗</span>
+              <span>访问我的小红书</span>
             </button>
           </div>
           
-          <p class="shop-tip">复制后在小红书搜索即可找到我们 ✨</p>
+          <p class="shop-tip">点击按钮即可跳转到小红书主页 ✨</p>
         </div>
       </div>
       
@@ -66,30 +66,9 @@ const handleClose = () => {
   emit('close')
 }
 
-const copyShopName = async () => {
-  const shopName = '灵光信栈'
-  
-  try {
-    // 尝试使用现代 API
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      await navigator.clipboard.writeText(shopName)
-      alert('✅ 已复制店铺名称：灵光信栈\n\n请打开小红书搜索即可找到我们！')
-    } else {
-      // 降级方案：使用传统方法
-      const textarea = document.createElement('textarea')
-      textarea.value = shopName
-      textarea.style.position = 'fixed'
-      textarea.style.opacity = '0'
-      document.body.appendChild(textarea)
-      textarea.select()
-      document.execCommand('copy')
-      document.body.removeChild(textarea)
-      alert('✅ 已复制店铺名称：灵光信栈\n\n请打开小红书搜索即可找到我们！')
-    }
-  } catch (err) {
-    // 如果复制失败，显示店铺名让用户手动复制
-    alert('店铺名称：灵光信栈\n\n请手动复制后在小红书搜索')
-  }
+const goToXiaohongshu = () => {
+  // 跳转到小红书链接
+  window.open('https://xhslink.com/m/9uUK2MTrk3v', '_blank')
 }
 </script>
 
